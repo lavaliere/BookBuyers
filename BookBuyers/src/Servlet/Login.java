@@ -34,23 +34,23 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		  String user = request.getParameter("username");
 		  String pass = request.getParameter("password");
 		  
 		  System.out.println("Connecting with username = " + user + " and password = " + pass);
 		  DBManager db = new DBManager();
+		  
 		  try{
-			  db.connect("jdbc:mysql://http://mysql-bookbuyers.jelastic.servint.net/BookBuyers", user, pass);
-			 //write check for 
-			
-			  if(user.equalsIgnoreCase("admin")){
-				  response.sendRedirect("Admin.jsp");
-			  }else{
-				  //fix this
-				  response.sendRedirect("User.jsp");
-			  }
-			  	
+			  db.connect(user, pass);
+
+			  //this is where the User object's login method goes
+				  if(user.equalsIgnoreCase("admin")){
+					  response.sendRedirect("Admin.jsp");
+				  }else{
+					  //fix this
+					  response.sendRedirect("User.jsp");
+				  }
+				  	
 		  }catch(Exception e){
 			  System.out.println("Connection failed...");
 			  

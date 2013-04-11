@@ -16,25 +16,25 @@ public class DBManager {
 	public static final String user_password = "wpXuaE2C3t";
 	public static boolean connected = false;
 
-	public Connection connect(String url, String username, String password){
+	public Connection connect(String username, String password){
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
 		com.mysql.jdbc.Driver d = null;
 		Boolean valid = false;
 
-        try {
+		try {
         	d = new com.mysql.jdbc.Driver();
         	Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection(URL, user_name, user_password);
             st = c.createStatement();
-            String query = "SELECT username, password FROM login ORDER BY username;";
+            String query = "SELECT Username, Password FROM login ORDER BY Username;";
             rs = st.executeQuery(query);
             System.out.println("QUERY: " + query);
            
             while(rs.next()) {
-            	String db_name = rs.getString("username");
-            	String db_pass = rs.getString("password");
+            	String db_name = rs.getString("Username");
+            	String db_pass = rs.getString("Password");
             	//compare user's attempted login info with stored login info
             	if(db_name.equalsIgnoreCase(username)){
             		if(db_pass.equals(password)){

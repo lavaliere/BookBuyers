@@ -33,6 +33,11 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		/*
+		 * This is where the call to the Book sell method goes.
+		 * 
+		 */
+		
 	}
 
 }
