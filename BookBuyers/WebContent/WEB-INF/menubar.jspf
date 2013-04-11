@@ -48,10 +48,10 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-		<h1 id="title" class="menu"> BookBuyers.com</h1>
+		<a href="Main.jsp" id="title" class="menu"> BookBuyers.com</a>
 		<form action="Search" method="post">
 			<input id="search" name="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
-			 <input type="submit" value="Search">
+			<input type="submit" value="Search">
 			<a href="#login" onclick="login()" id="loginLink">Login</a>
 		</form> 
 		</div>

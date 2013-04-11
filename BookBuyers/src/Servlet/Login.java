@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.DBManager;
+
 /**
  * Servlet implementation class Login
  */
@@ -33,6 +35,26 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		  String user = request.getParameter("username");
+		  String pass = request.getParameter("password");
+		  
+		  System.out.println("Connecting with username = " + user + " and password = " + pass);
+		  DBManager db = new DBManager();
+		  try{
+			  db.connect("jdbc:mysql://http://mysql-bookbuyers.jelastic.servint.net/BookBuyers", user, pass);
+			 //write check for 
+			
+			  if(user.equalsIgnoreCase("admin")){
+				  response.sendRedirect("Admin.jsp");
+			  }else{
+				  //fix this
+				  response.sendRedirect("User.jsp");
+			  }
+			  	
+		  }catch(Exception e){
+			  System.out.println("Connection failed...");
+			  
+		  }
 	}
 
 }

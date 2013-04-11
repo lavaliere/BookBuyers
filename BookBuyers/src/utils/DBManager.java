@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 import com.sun.corba.se.impl.util.Version;
  
 public class DBManager {
-	public static final String URL = "jdbc:mysql://216.22.34.233/Bookstore";
-	public static final String user_name = "";
-	public static final String user_password = "";
+	public static final String URL = "jdbc:mysql://216.22.34.233/BookBuyers";
+	public static final String user_name = "root";
+	public static final String user_password = "wpXuaE2C3t";
 	public static boolean connected = false;
 
 	public Connection connect(String url, String username, String password){
