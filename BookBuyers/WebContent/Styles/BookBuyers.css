@@ -1,0 +1,60 @@
+
+#sellTip, #buyTip{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #2266AA;
+    left: 500px;
+    position: absolute;
+    top: 30px;
+    width: 232px;
+    z-index: 100000;
+	} 
+	
+  #StartSell{
+  	color: #FF4D4D;
+  	margin-right: 30px;  	
+  }
+  
+  #StartBuy{
+  	color: #0066FF;
+  	margin-left: 30px;
+  }
+  
+  #StartSell, #StartBuy{
+ 	display: inline;
+ 	font-size: 20px;
+ 	
+ }
+  
+  #login{
+  	position: absolute;
+  	top: 10px;
+  	right: 10px;
+  }
+  
+  #title{
+    font-size: 27px;
+  	position: absolute;
+  	left: 5px;
+  	color:  #FFFFFF;
+	text-shadow: 2px 2px 5px #85CECE;
+  }
+  
+  #body{
+  	background-color: #FFFFFF;
+  	-moz-border-radius: 15px;
+	border-radius: 15px;
+	margin: 30px;
+	padding: 30px;
+  	margin-top: 100px;
+  }
+  
+  #search{
+  	margin-top: 10px;
+  	margin-left: 50px;
+  	width: 350px;
+  }
+  
+  body{
+    background-color: #D6D6D6;
+  
+  }
