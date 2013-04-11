@@ -30,6 +30,16 @@
 			document.getElementById(tipID).style.display = "none";
 		}, 10000);
 	};
+	
+	function login() {
+		var hiddenLog = document.getElementById("login");
+		hiddenLog.style.display = "";
+		
+	}
+	function cancel(){
+		var hiddenLog = document.getElementById("login");
+		hiddenLog.style.display = "none";
+	}
 </script>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>BookBuyers.com</title>
@@ -42,7 +52,7 @@
 		<form action="Search" method="post">
 			<input id="search" name="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
 			 <input type="submit" value="Search">
-			<a href="#" id="login">Login</a>
+			<a href="#login" onclick="login()" id="loginLink">Login</a>
 		</form> 
 		</div>
 	</div>
@@ -53,4 +63,22 @@
 			<div id="buyTip" style="display: none">
 				To start buying, type in the name of the book you're looking for!
 			</div>
+					</div>
+		<div id="login" class="modalDialog" style="display:none">
+			<form id="login" action="Login" method="POST">
+				<div align="center">
+				<h2 style="color:white">Login</h2>
+				<table>
+				<tr>
+					<td style="color:white">Username: <input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td style="color:white">Password: <input type="password" name="password"></td>
+				</tr>
+				</table>
+				<input type="submit" value="Submit" onclick="login()">
+				<input type="button" value="Cancel" onclick="cancel()">
+				</div>
+			</form>		
+		</div>
 <div id="body" align="center">
