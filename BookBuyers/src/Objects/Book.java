@@ -1,6 +1,8 @@
 package Objects;
 
 public class Book {
+	/* Class Variables */
+
 	/* Constructors */
 	
 	/* Getters*/
