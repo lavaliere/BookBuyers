@@ -14,10 +14,12 @@ String sBNSale = "";
 	<h1><%=sName %></h1>
 	<div id="left">
 		<img src="<%=sImage%>" width="400px" height="491px">
-		<form action="Checkout" method="post">	
+		<form action="ServiceBroker" method="post">	
+			<input type="hidden" id="Service" value="01">
 			<input type="submit" value="Buy this!">
 		</form>
-		<form action="Checkout" method="post">	
+		<form action="ServiceBroker" method="post">	
+			<input type="hidden" id="Service" value="01">
 			<input type="submit" value="Sell this!">
 		</form>
 	</div>
