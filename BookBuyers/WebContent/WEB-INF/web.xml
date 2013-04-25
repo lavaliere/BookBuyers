@@ -4,47 +4,44 @@
   <welcome-file-list>
     <welcome-file>Main.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <servlet>
     <servlet-name>Search</servlet-name>
     <servlet-class>Servlet.Search</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>Servlet.Login</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>Checkout</servlet-name>
     <servlet-class>Servlet.Checkout</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>BuyBack</servlet-name>
     <servlet-class>Servlet.BuyBack</servlet-class>
   </servlet>
-  
-   
-   <servlet-mapping>
+  <servlet>
+    <servlet-name>ServiceBroker</servlet-name>
+    <servlet-class>Servlet.ServiceBroker</servlet-class>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>Search</servlet-name>
     <url-pattern>/Search</url-pattern>
   </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
-  </servlet-mapping> 
-
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Checkout</servlet-name>
     <url-pattern>/Checkout</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>BuyBack</servlet-name>
     <url-pattern>/BuyBack</url-pattern>
   </servlet-mapping>
- 
+  <servlet-mapping>
+    <servlet-name>ServiceBroker</servlet-name>
+    <url-pattern>/ServiceBroker</url-pattern>
+  </servlet-mapping>
 </web-app>
