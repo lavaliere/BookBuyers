@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +30,6 @@
 		};
 		
 		function login() {
-			
 			for(var i=0; i <tips.length; i++){
 				var tipWin = document.getElementById(tips[i]);
 				
@@ -42,8 +40,8 @@
 			
 			var hiddenLog = document.getElementById("login");
 			hiddenLog.style.display = "";
-			
 		}
+		
 		function cancel(){
 			var hiddenLog = document.getElementById("login");
 			hiddenLog.style.display = "none";
@@ -53,39 +51,39 @@
 	<title>BookBuyers.com</title>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-		<a href="Main.jsp" id="title" class="menu"><img src="Images/book.png" width="250px"></a>
-		<form action="Search" id="searchForm" method="post">
-			<input id="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
-			<input type="submit" id="button"  value="Search">
-			<a href="#login" onclick="login()" id="loginLink">Login</a>
-		</form> 
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+			<a href="Main.jsp" id="title" class="menu"><img src="Images/book.png" width="250px"></a>
+			<form action="Search" id="searchForm" method="post">
+				<input id="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN" onfocus="this.value = ''">
+				<input type="submit" id="button"  value="Search">
+				<a href="#login" onclick="login()" id="loginLink">Login</a>
+			</form> 
+			</div>
 		</div>
 	</div>
-</div>
-<div id="sellTip" style="display: none">
-	To start selling, type in the name of the book you'd like to sell.
-</div>
-<div id="buyTip" style="display: none">
-	To start buying, type in the name of the book you're looking for!
-</div>
-<div id="login" class="modalDialog" style="display:none">
-	<form id="login" action="Login" method="POST">
-		<div align="center">
-		<h2 style="color:white">Login</h2>
-		<table>
-		<tr>
-			<td style="color:white">Username: <input type="text" name="username"></td>
-		</tr>
-		<tr>
-			<td style="color:white">Password: <input type="password" name="password"></td>
-		</tr>
-		</table>
-		<input type="submit" value="Submit" onclick="login()">
-		<input type="button" value="Cancel" onclick="cancel()">
-		</div>
-	</form>		
-</div>
-<div id="body" align="center">
+	<div id="sellTip" style="display: none">
+		To start selling, type in the name of the book you'd like to sell.
+	</div>
+	<div id="buyTip" style="display: none">
+		To start buying, type in the name of the book you're looking for!
+	</div>
+	<div id="login" class="modalDialog" style="display:none">
+		<form id="login" action="Login" method="POST">
+			<div align="center">
+			<h2 style="color:white">Login</h2>
+			<table>
+			<tr>
+				<td style="color:white">Username: <input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td style="color:white">Password: <input type="password" name="password"></td>
+			</tr>
+			</table>
+			<input type="submit" value="Submit" onclick="login()">
+			<input type="button" value="Cancel" onclick="cancel()">
+			</div>
+		</form>		
+	</div>
+	<div id="body" align="center">
