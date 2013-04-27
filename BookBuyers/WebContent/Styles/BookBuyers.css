@@ -31,6 +31,12 @@
   	right: 10px;
   }
   
+   #loginLink:hover {
+  	color: #66FFFF;
+  	text-decoration: none;
+  	
+  }
+  
   #title{
     font-size: 27px;
   	position: absolute;
