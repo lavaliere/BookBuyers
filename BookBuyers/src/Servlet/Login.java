@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Objects.User;
+
 import utils.DBManager;
 
 /**
@@ -39,21 +41,24 @@ public class Login extends HttpServlet {
 		  
 		  System.out.println("Connecting with username = " + user + " and password = " + pass);
 		  DBManager db = new DBManager();
+		  User uUser = new User(user, pass);
 		  
 		  try{
-			  db.connect(user, pass);
-
 			  //this is where the User object's login method goes
+			  if(uUser.isValid()){
+				  db.connect(user, pass);
+			  
 				  if(user.equalsIgnoreCase("admin")){
 					  response.sendRedirect("Admin.jsp");
 				  }else{
-					  //fix this
 					  response.sendRedirect("User.jsp");
 				  }
-				  	
+			  }else{
+				  response.sendRedirect("Main.jsp?failed");
+			  }
 		  }catch(Exception e){
 			  System.out.println("Connection failed...");
-			  
+			  response.sendRedirect("Main.jsp?failed");
 		  }
 	}
 

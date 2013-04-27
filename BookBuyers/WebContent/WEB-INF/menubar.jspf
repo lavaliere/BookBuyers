@@ -3,53 +3,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<link rel="shortcut icon" href="Images/b.ico">
 	<style type="text/css">
 		<%@include file="/Styles/bootstrap.min.css"%>
 		<%@include file="/Styles/BookBuyers.css"%>	
 	</style>
 	<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 	<script type="text/javascript">
-	var tips = new Array("sellTip", "buyTip");
+		var tips = new Array("sellTip", "buyTip");
+		
+		
+		function moveCursor(tipID){
+			for(var i = 0; i < tips.length; i++ ){
+				if(!(tips[i] == tipID)){
+					var active = document.getElementById(tips[i]);
+					if(active.style.display.value != "none"){
+						active.style.display = "none";
+					}
+				}
+				
+			}//for
+			
+			document.getElementById("search").focus();
+			document.getElementById(tipID).style.display = "inherit";
 	
-	
-	function moveCursor(tipID){
-		for(var i = 0; i < tips.length; i++ ){
-			if(!(tips[i] == tipID)){
-				var active = document.getElementById(tips[i]);
-				if(active.style.display.value != "none"){
-					active.style.display = "none";
+			setTimeout(function(){
+				document.getElementById(tipID).style.display = "none";
+			}, 10000);
+		};
+		
+		function login() {
+			
+			for(var i=0; i <tips.length; i++){
+				var tipWin = document.getElementById(tips[i]);
+				
+				if(tipWin.style.display.value != "none"){
+					tipWin.style.display = "none";				
 				}
 			}
 			
-		}//for
-		
-		document.getElementById("search").focus();
-		document.getElementById(tipID).style.display = "inherit";
-
-		setTimeout(function(){
-			document.getElementById(tipID).style.display = "none";
-		}, 10000);
-	};
-	
-	function login() {
-		
-		for(var i=0; i <tips.length; i++){
-			var tipWin = document.getElementById(tips[i]);
+			var hiddenLog = document.getElementById("login");
+			hiddenLog.style.display = "";
 			
-			if(tipWin.style.display.value != "none"){
-				tipWin.style.display = "none";				
-			}
 		}
-		
-		var hiddenLog = document.getElementById("login");
-		hiddenLog.style.display = "";
-		
-	}
-	function cancel(){
-		var hiddenLog = document.getElementById("login");
-		hiddenLog.style.display = "none";
-	}
-</script>
+		function cancel(){
+			var hiddenLog = document.getElementById("login");
+			hiddenLog.style.display = "none";
+		}
+	</script>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>BookBuyers.com</title>
 </head>
@@ -57,7 +58,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-		<a href="Main.jsp" id="title" class="menu"> BookBuyers.com</a>
+		<a href="Main.jsp" id="title" class="menu"><img src="Images/book.png" width="250px"></a>
 		<form action="Search" method="post">
 			<input id="search" name="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
 			<input type="submit" value="Search">
@@ -66,28 +67,27 @@
 		</div>
 	</div>
 </div>
-			<div id="sellTip" style="display: none">
-				To start selling, type in the name of the book you'd like to sell.
-			</div>
-			<div id="buyTip" style="display: none">
-				To start buying, type in the name of the book you're looking for!
-			</div>
-					</div>
-		<div id="login" class="modalDialog" style="display:none">
-			<form id="login" action="Login" method="POST">
-				<div align="center">
-				<h2 style="color:white">Login</h2>
-				<table>
-				<tr>
-					<td style="color:white">Username: <input type="text" name="username"></td>
-				</tr>
-				<tr>
-					<td style="color:white">Password: <input type="password" name="password"></td>
-				</tr>
-				</table>
-				<input type="submit" value="Submit" onclick="login()">
-				<input type="button" value="Cancel" onclick="cancel()">
-				</div>
-			</form>		
+<div id="sellTip" style="display: none">
+	To start selling, type in the name of the book you'd like to sell.
+</div>
+<div id="buyTip" style="display: none">
+	To start buying, type in the name of the book you're looking for!
+</div>
+<div id="login" class="modalDialog" style="display:none">
+	<form id="login" action="Login" method="POST">
+		<div align="center">
+		<h2 style="color:white">Login</h2>
+		<table>
+		<tr>
+			<td style="color:white">Username: <input type="text" name="username"></td>
+		</tr>
+		<tr>
+			<td style="color:white">Password: <input type="password" name="password"></td>
+		</tr>
+		</table>
+		<input type="submit" value="Submit" onclick="login()">
+		<input type="button" value="Cancel" onclick="cancel()">
 		</div>
+	</form>		
+</div>
 <div id="body" align="center">

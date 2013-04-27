@@ -15,11 +15,11 @@ String sBNSale = "";
 	<div id="left">
 		<img src="<%=sImage%>" width="400px" height="491px">
 		<form action="ServiceBroker" method="post">	
-			<input type="hidden" id="Service" value="01">
+			<input type="hidden" name="Service" value="01">
 			<input type="submit" value="Buy this!">
 		</form>
 		<form action="ServiceBroker" method="post">	
-			<input type="hidden" id="Service" value="01">
+			<input type="hidden" name="Service" value="01">
 			<input type="submit" value="Sell this!">
 		</form>
 	</div>
