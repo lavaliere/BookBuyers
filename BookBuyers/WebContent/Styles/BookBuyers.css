@@ -49,10 +49,22 @@
   	margin-top: 100px;
   }
   
+  #searchForm{
+  	margin-top: 20px;
+  	margin-left: 75px;
+  }
+  
   #search{
-  	margin-top: 10px;
-  	margin-left: 50px;
   	width: 350px;
+  }
+  
+  #button{
+  	background: #000000;
+  	color: white;
+  	padding: 5px;
+  	margin-top: -10px;
+  	-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
   }
   
   #pup {
