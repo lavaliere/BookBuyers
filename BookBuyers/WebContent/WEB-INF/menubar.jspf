@@ -12,7 +12,6 @@
 	<script type="text/javascript">
 		var tips = new Array("sellTip", "buyTip");
 		
-		
 		function moveCursor(tipID){
 			for(var i = 0; i < tips.length; i++ ){
 				if(!(tips[i] == tipID)){
@@ -21,7 +20,6 @@
 						active.style.display = "none";
 					}
 				}
-				
 			}//for
 			
 			document.getElementById("search").focus();
@@ -59,9 +57,9 @@
 	<div class="navbar-inner">
 		<div class="container">
 		<a href="Main.jsp" id="title" class="menu"><img src="Images/book.png" width="250px"></a>
-		<form action="Search" method="post">
-			<input id="search" name="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
-			<input type="submit" value="Search">
+		<form action="Search" id="searchForm" method="post">
+			<input id="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN">
+			<input type="submit" id="button"  value="Search">
 			<a href="#login" onclick="login()" id="loginLink">Login</a>
 		</form> 
 		</div>
