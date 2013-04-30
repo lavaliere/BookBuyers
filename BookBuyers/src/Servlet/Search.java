@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,16 +33,9 @@ public class Search extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		/*
-		 * This is where the call to the Book search method goes.
-		 * 
-		 */
-		
-		  response.sendRedirect("SearchResults.jsp");
-
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SearchResults.jsp");
+        dispatcher.forward(request, response);
+    }
 
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,7 +58,8 @@ public class ServiceBroker extends HttpServlet {
 		System.out.println("Service called: " + service);
 		
 		if(hmServices.containsKey(service)){
-			response.sendRedirect("/" + hmServices.get(service));
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/" + hmServices.get(service));
+		    dispatcher.forward(request, response);
 			return;
 		}else{
 			PrintWriter out = response.getWriter();

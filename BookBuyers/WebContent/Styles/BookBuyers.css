@@ -1,5 +1,5 @@
 
-#sellTip, #buyTip{
+  #sellTip, #buyTip{
 	background: none repeat scroll 0 0 #FFFFFF;
     border: 2px solid #2266AA;
     left: 500px;
@@ -7,7 +7,7 @@
     top: 30px;
     width: 232px;
     z-index: 100000;
-	} 
+  } 
 	
   #StartSell{
   	color: #FF4D4D;
@@ -34,7 +34,6 @@
    #loginLink:hover {
   	color: #66FFFF;
   	text-decoration: none;
-  	
   }
   
   #title{
@@ -73,6 +72,10 @@
   	-webkit-border-radius: 4px;
   }
   
+  #button:hover {
+  	color: #66FFFF;
+  }
+  
   #pup {
 	position:absolute;
 	z-index:200000; /* aaaalways on top*/
@@ -108,11 +111,26 @@
 	pointer-events: none;
 }
 
-.modalDialog:target {
+  .modalDialog:target {
 	opacity:1;
 	pointer-events: auto;
-}
+  }
 
   body{
     background-color: #D6D6D6;  
+  }
+  
+  table{
+  	width: 100%;
+  	padding: 10px;
+  
+  }
+  thead{
+  	background-color: #66FFFF;
+  	-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
+  }
+  
+  td{
+  	text-align: center;
   }

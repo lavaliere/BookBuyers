@@ -56,7 +56,7 @@
 			<div class="container">
 			<a href="Main.jsp" id="title" class="menu"><img src="Images/book.png" width="250px"></a>
 			<form action="Search" id="searchForm" method="post">
-				<input id="search" type="text" name="searchTerms" value="Search by Book Title, Author, or ISBN" onfocus="this.value = ''">
+				<input id="search" type="text" name="search" value="Search by Book Title, Author, or ISBN" onfocus="this.value = ''">
 				<input type="submit" id="button"  value="Search">
 				<a href="#login" onclick="login()" id="loginLink">Login</a>
 			</form> 

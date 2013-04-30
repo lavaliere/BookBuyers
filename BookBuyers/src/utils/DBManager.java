@@ -15,7 +15,34 @@ public class DBManager {
 	public static final String user_name = "root";
 	public static final String user_password = "wpXuaE2C3t";
 	public static boolean connected = false;
+	
+	public Connection connect(){
+		Connection c = null;
+		com.mysql.jdbc.Driver d = null;
 
+		try {
+			System.out.println("Attempting to connect...");
+        	d = new com.mysql.jdbc.Driver();
+        	Class.forName("com.mysql.jdbc.Driver");
+        	System.out.println("username: " + user_name + "\n password: " + user_password);
+            c = DriverManager.getConnection(URL, user_name, user_password);
+            if(!c.isClosed()){
+        		System.out.println("[DBManager] : Returning a connection.");
+                return c;
+        	}else{
+        		System.out.println("[DBManager] : c is closed!");
+        	}
+   		  } catch (SQLException ex) {
+			  Logger lgr = Logger.getLogger(Version.class.getName());
+		      lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		  } catch (ClassNotFoundException e) {
+			  Logger lgr = Logger.getLogger(Version.class.getName());
+		      lgr.log(Level.SEVERE, e.getMessage(), e);
+		}//try
+
+		return null;
+
+	}
 	public Connection connect(String username, String password){
 		Connection c = null;
 		Statement st = null;
@@ -44,12 +71,10 @@ public class DBManager {
             	}
             }
         } catch (SQLException ex) {
-        //	ex.printStackTrace();
             Logger lgr = Logger.getLogger(Version.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         } catch (ClassNotFoundException ex) {
-        // 	ex.printStackTrace();
             Logger lgr = Logger.getLogger(Version.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 		} finally {
