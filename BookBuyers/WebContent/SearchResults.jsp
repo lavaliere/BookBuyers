@@ -1,6 +1,6 @@
 <%@ page import="Objects.Book" %>
 <%
-//parse parameters here to pass to the searchBook functions
+//parse parameters here to pass to the searchBook function
 Book searched = new Book();
 StringBuffer sbBody = searched.searchBook(request.getParameter("search"));
 %>

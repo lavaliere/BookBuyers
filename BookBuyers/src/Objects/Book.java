@@ -79,11 +79,14 @@ public class Book {
 		Connection conn = null;
 		PreparedStatement psSearch = null;
 		ResultSet lRes = null;
-		String sSearch = "SELECT product, image, isbn, author, price FROM inventory WHERE product LIKE '%" + searchTerms +
-				"%' OR isbn LIKE '%" + searchTerms + "%' OR author LIKE '%" + searchTerms + "%'";
+		String sSearch = "SELECT product, image, isbn, author, price, quantity FROM inventory WHERE product LIKE '%" + searchTerms +
+				"%' OR isbn LIKE '%" + searchTerms + "%' OR author LIKE '%" + searchTerms + "%' ORDER BY PRODUCT";
 		boolean isEmpty = true;
 		sbBody.append("<table>");
 		
+		if(searchTerms.isEmpty()){
+			sSearch = "SELECT * FROM inventory ORDER BY product";
+		}
 		try{
 			conn = db.connect();
 			psSearch = conn.prepareStatement(sSearch);
@@ -92,19 +95,27 @@ public class Book {
 			sbBody.append("<th>Product Image</th>");
 			sbBody.append("<th>Book Title</th>");
 			sbBody.append("<th>Author</th>");
+			sbBody.append("<th>ISBN</th>");
+			sbBody.append("<th>Quantity</th>");
 			sbBody.append("<th>Price</th>");
 			sbBody.append("</thead>");
 
 			while(lRes.next()){
 				sbBody.append("<tr>");
 					sbBody.append("<td>");
-						sbBody.append("<img src=\"Images/"); sbBody.append(lRes.getString("image")); sbBody.append("\" height=\"100px\">");
+						sbBody.append("<img src=\"Images/"); sbBody.append(lRes.getString("image")); sbBody.append("\" class=\"preview\">");
 					sbBody.append("</td>");
 					sbBody.append("<td>");
 						sbBody.append(lRes.getString("product"));
 					sbBody.append("</td>");
 					sbBody.append("<td>");
 						sbBody.append(lRes.getString("author"));
+					sbBody.append("</td>");
+					sbBody.append("<td>");
+						sbBody.append(lRes.getString("isbn"));
+					sbBody.append("</td>");
+					sbBody.append("<td>");
+						sbBody.append(lRes.getInt("quantity"));
 					sbBody.append("</td>");
 					sbBody.append("<td>");
 						sbBody.append(lRes.getDouble("price"));
