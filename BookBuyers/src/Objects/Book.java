@@ -84,9 +84,10 @@ public class Book {
 		boolean isEmpty = true;
 		sbBody.append("<table>");
 		
-		if(searchTerms.isEmpty()){
+		if(searchTerms.isEmpty() || searchTerms.equalsIgnoreCase("Search by Book Title, Author, or ISBN")){
 			sSearch = "SELECT * FROM inventory ORDER BY product";
 		}
+		
 		try{
 			conn = db.connect();
 			psSearch = conn.prepareStatement(sSearch);
