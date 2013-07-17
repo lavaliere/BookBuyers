@@ -106,9 +106,9 @@ public class Book {
 					sbBody.append("<td>");
 						sbBody.append("<img src=\"Images/"); sbBody.append(lRes.getString("image")); sbBody.append("\" class=\"preview\">");
 					sbBody.append("</td>");
-					sbBody.append("<td>");
+					sbBody.append("<td><a href=\"Compare.jsp?ID=" + lRes.getInt("InventoryID") + "\">");
 						sbBody.append(lRes.getString("product"));
-					sbBody.append("</td>");
+					sbBody.append("</a></td>");
 					sbBody.append("<td>");
 						sbBody.append(lRes.getString("author"));
 					sbBody.append("</td>");
@@ -144,7 +144,6 @@ public class Book {
 				sbBody.append("\nPlease contact your system administrator.");
 			sbBody.append("</td></tr>");
 		}finally{
-			db.closeAllConn(psSearch, conn);
 		}
 		
 		sbBody.append("</table>");

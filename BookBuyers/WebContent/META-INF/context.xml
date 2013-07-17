@@ -1,0 +1,14 @@
+<Context>
+<Loader delegate="true"/>
+<Resource
+        name="jdbc/bookbuyers"
+        auth="Container"
+        type="javax.sql.DataSource"
+        maxActive="5"
+        maxIdle="2"
+        username="bb_admin"
+        maxWait="5000"
+        driverClassName="com.mysql.jdbc.Driver"
+        password="pgg462"
+        url="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/bookbuyers"/>
+</Context>

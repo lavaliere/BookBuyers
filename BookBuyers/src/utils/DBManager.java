@@ -1,155 +1,101 @@
 package utils;
  
-import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.naming.*;
+import javax.sql.*;
 
-import com.sun.corba.se.impl.util.Version;
  
 public class DBManager {
-	public static final String URL = "jdbc:mysql://216.22.34.233/BookBuyers";
-	public static final String user_name = "root";
-	public static final String user_password = "wpXuaE2C3t";
 	public static boolean connected = false;
+	String dataSource = "java:comp/env/jdbc/bookbuyers";
+	Connection res = null;
 	
 	public Connection connect(){
-		Connection c = null;
-		com.mysql.jdbc.Driver d = null;
-
 		try {
-			System.out.println("Attempting to connect...");
-        	d = new com.mysql.jdbc.Driver();
-        	Class.forName("com.mysql.jdbc.Driver");
-        	System.out.println("username: " + user_name + "\n password: " + user_password);
-            c = DriverManager.getConnection(URL, user_name, user_password);
-            if(!c.isClosed()){
-        		System.out.println("[DBManager] : Returning a connection.");
-                return c;
-        	}else{
-        		System.out.println("[DBManager] : c is closed!");
-        	}
-   		  } catch (SQLException ex) {
-			  Logger lgr = Logger.getLogger(Version.class.getName());
-		      lgr.log(Level.SEVERE, ex.getMessage(), ex);
-		  } catch (ClassNotFoundException e) {
-			  Logger lgr = Logger.getLogger(Version.class.getName());
-		      lgr.log(Level.SEVERE, e.getMessage(), e);
-		}//try
-
-		return null;
-
+			Context initialContext = new InitialContext();
+			//If can't get context
+			if(initialContext != null){
+				DataSource ds = (DataSource)initialContext.lookup(dataSource);
+				if(ds != null){
+					res = ds.getConnection();
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return res;
 	}
-	public Connection connect(String username, String password){
-		Connection c = null;
+	
+	
+	public Connection connect(String user, String pass){
 		Statement st = null;
 		ResultSet rs = null;
-		com.mysql.jdbc.Driver d = null;
-		Boolean valid = false;
-
+		boolean valid = false;
+		System.out.println("[DBManager] Attempting to log in: " + user + " and " + pass);
 		try {
-        	d = new com.mysql.jdbc.Driver();
-        	Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection(URL, user_name, user_password);
-            st = c.createStatement();
-            String query = "SELECT Username, Password FROM login ORDER BY Username;";
-            rs = st.executeQuery(query);
-            System.out.println("QUERY: " + query);
-           
-            while(rs.next()) {
-            	String db_name = rs.getString("Username");
-            	String db_pass = rs.getString("Password");
-            	//compare user's attempted login info with stored login info
-            	if(db_name.equalsIgnoreCase(username)){
-            		if(db_pass.equals(password)){
-            			valid = true;
-            			break;
-            		}
-            	}
-            }
-        } catch (SQLException ex) {
-            Logger lgr = Logger.getLogger(Version.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        } catch (ClassNotFoundException ex) {
-            Logger lgr = Logger.getLogger(Version.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			Context initialContext = new InitialContext();
+			//If can't get context
+			if(initialContext != null){
+				DataSource ds = (DataSource)initialContext.lookup(dataSource);
+				if(ds != null){
+					res = ds.getConnection();
+					st = res.createStatement();
+					String query = "SELECT Username, Password FROM login ORDER BY Username;";
+			        rs = st.executeQuery(query);
+					while(rs.next()){
+						String db_name = rs.getString("Username");
+		            	String db_pass = rs.getString("Password");
+		            	//compare user's attempted login info with stored login info
+		            	if(db_name.equalsIgnoreCase(user)){
+		            		if(db_pass.equals(pass)){
+		            			valid = true;
+		            			break;
+		            		}
+		            	}
+					}
+					
+				}
+			}
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
         	if(valid){
+        		System.out.println("Connection is valid. Returning...");
+
 	        	//close Statement, return connection
-				endSearch(st);
+				try {
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				connected = true;
         	}else{
+        		System.out.println("Connection is not valid. Closing...");
         		//close all and return null
 				connected = false;
-				closeAllConn(st, c);
+				try {
+					st.close();
+					res.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch(NullPointerException e){
+					e.printStackTrace();
+				}
         	}
         }//finally
-		return c;
-    }
-	
-	public void logout(Connection userSession){
-		try {
-			if(!userSession.isClosed()){
-				connected = false;
-				userSession.close();
-			}
-		} catch (SQLException ex) {
-	//		ex.printStackTrace();
-			Logger lgr = Logger.getLogger(Version.class.getName());
-			lgr.log(Level.SEVERE, ex.getMessage(), ex);
-		}
-	}
-	
-	public boolean validateConn(){
-		return connected;
-	}
-	
-	//@To DO: flesh this out.
-	public boolean update(){
-		return false;
-	}
-	
-	//@To DO: flesh this out.
-	public ResultSet query(){
-		return null;
 		
+		
+		return res;
 	}
-	
-	public void closeAllConn(java.sql.Statement st, Connection c){
-         if (st != null) {
-             try {
-				st.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-				Logger lgr = Logger.getLogger(Version.class.getName());
-				lgr.log(Level.SEVERE, ex.getMessage(), ex);
-			}
-         }
-         if(c != null){
-        	 try {
-				c.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-				Logger lgr = Logger.getLogger(Version.class.getName());
-				lgr.log(Level.SEVERE, ex.getMessage(), ex);
-			}
-         }
 
-	}
-	
-	public void endSearch(java.sql.Statement st){
-         if (st != null) {
-             try {
-				st.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-				Logger lgr = Logger.getLogger(Version.class.getName());
-				lgr.log(Level.SEVERE, ex.getMessage(), ex);
-			}
-         }
-	}
+
 }
