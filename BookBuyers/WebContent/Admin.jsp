@@ -1,6 +1,6 @@
 
 <%@include file="/WEB-INF/menubar.jspf" %>
-	<h1>Admin Page</h1>
+	<h1>Admin Page changed</h1>
 	<form action="ServiceBroker" method="post">	
 		<input type="hidden" name="Service" value="04">
 		<input type="submit" value="Sales Report Export">
